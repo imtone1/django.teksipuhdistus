@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+
+<div class="card" style="width: 20rem;">
+    <div class="card-body">
+        
+        <form method="post" action="/lisaa-tietokantaan/">
+           {% csrf_token %}
+            <input class="card-text" type="text" placeholder="Otsikko" name="otsikko">
+            <input class="card-text" type="text" placeholder="Teksti" name="teksti">
+            
+            <br />
+           
+            <br/>
+            <input type="submit" value="Confirm" class="btn btn-success btn-sm" name="">
+            <input type="submit" id="hide-btn" class="btn btn-secondary btn-sm" onclick="hideaddform()" value="Cancel" name="">
+        </form>
+    </div>
+</div>
+
+{% for t in tietokanta %}
+<div class="card border-primary mb-3" style="max-width: 20rem;">
+    <div class="card-header">{{t.otsikko}}</div>
+    <div class="card-body">
+      <p class="card-text">{{t.teksti}}.</p>
+    </div>
+<div class="btn-group" role="group" aria-label="edit buttons" style="border-radius: 0%;">
+    <button type="button" class="btn btn-secondary">Muokkaa</button>
+    <a href="/confirm-delete/{{t.id}}/" class="btn btn-secondary">Poista</a>
+  </div>
+  
+  
+  </div>
+  {% empty %}
+  <div class="card border-primary mb-3" style="max-width: 20rem;">
+    <div class="card-header">Tietokanta tyhjä</div>
+  </div>
+  {% endfor %}
+
+
+{% endblock %}

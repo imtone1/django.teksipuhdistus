@@ -1,0 +1,79 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<h1>Puhdistus</h1>
+<form method="post" action="/tekstialkuperainen_get/">
+<div class="container">
+<div class="form-group">
+    {% csrf_token %}
+    <label for="exampleTextarea" class="col-form-label col-form-label-lg mt-4">Syötä puhdistettava teksti</label>
+    <textarea name="alkuperainenteksti"  class="form-control" rows="3" style="height: 106px;"></textarea>
+  </div>
+</div>
+<div class="container">
+    <div class="form-group">
+        <label for="deletelista" class="col-form-label col-form-label-lg mt-4">Mitä haluat poistaa, erota poistettavat sanat/merkit pilkulla</label>
+        <textarea class="form-control" name="delete_list" rows="3" style="height: 106px;"></textarea>
+      </div>
+      <input  class="btn btn-lg btn-primary" type="submit" style="margin: 1rem;" value="Puhdista"/>
+      <div id="puhd"></div>
+    </div>
+</form>   
+<div class="card text-white bg-dark mb-3">
+
+  <div class="card-header"></div>
+  <div class="card-body">
+      <p class="card-text">{{valmisteksti}}</p>
+  </div>
+  </div>        
+
+<div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="margin: 1rem;">
+  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked="">
+  <label class="btn btn-outline-primary" for="btnradio1">Muuta teksti</label>
+  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked="">
+  <label class="btn btn-outline-primary" for="btnradio2">Muuta poistettava tieto</label>
+  <input type="radio" class="btn-check" action="/editsivulle/" name="btnradio" id="btnradio3" autocomplete="off" checked="">
+  <label class="btn btn-outline-primary" for="btnradio3" >Tallenna valmis teksti tietokantaan</label>
+</div>
+
+
+
+<!-- <script>
+let x= `
+<h2>Puhdistettu teksti<h2>
+<div class="container">
+{% csrf_token %}    
+<div class="card text-white bg-dark mb-3">
+
+    <div class="card-header"></div>
+    <div class="card-body">
+        <h4 class="card-title"></h4>
+        <p class="card-text"></p>
+    </div>
+    </div>        
+
+<div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="margin: 1rem;">
+    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked="">
+    <label class="btn btn-outline-primary" for="btnradio1">Muuta teksti</label>
+    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked="">
+    <label class="btn btn-outline-primary" for="btnradio2">Muuta poistettava tieto</label>
+    <input type="radio" class="btn-check" action="/editsivulle/" name="btnradio" id="btnradio3" autocomplete="off" checked="">
+    <label class="btn btn-outline-primary" for="btnradio3" >Tallenna valmis teksti tietokantaan</label>
+  </div>
+  </div>`
+  // miten tehdä button joka vie editsivulle?
+
+  function showform() {
+    document.getElementById("puhd").innerHTML = x
+} -->
+
+<!-- // function hideform() {
+//     document.getElementById("add-div").innerHTML = ""
+// } -->
+
+
+
+<!-- </script> -->
+
+{% endblock %}
